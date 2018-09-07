@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30c0c494-11b6-43e3-ad50-ff27687522fb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     aceptante.`AcepCod` AS aceptante_AcepCod,
+     aceptante.`AcepRazSoc` AS aceptante_AcepRazSoc,
+     aceptante.`AceprApePat` AS aceptante_AceprApePat,
+     aceptante.`AcepApeMat` AS aceptante_AcepApeMat,
+     aceptante.`AcepNom` AS aceptante_AcepNom,
+     aceptante.`AcepDir` AS aceptante_AcepDir,
+     aceptante.`AcepTel` AS aceptante_AcepTel,
+     documentoidentidad.`DocIdeNom` AS documentoidentidad_DocIdeNom,
+     aceptante.`AcepNumDoc` AS aceptante_AcepNumDoc,
+     estado.`EstNom` AS estado_EstNom
+FROM
+     `aceptante` aceptante INNER JOIN `documentoidentidad` documentoidentidad ON aceptante.`DOCUMENTOIDENTIDAD_DocIdeCod` = documentoidentidad.`DocIdeCod`
+     INNER JOIN `estado` estado ON aceptante.`ESTADO_EstCod` = estado.`EstCod`
+WHERE
+     estado.`EstCod` <> '*'
+ AND aceptante.`AcepRazSoc` <> ''
+ORDER BY
+     aceptante.`AcepRazSoc` ASC,
+     aceptante.`AceprApePat` ASC,
+     aceptante.`AcepApeMat` ASC,
+     aceptante.`AcepNom` ASC]]>
+	</queryString>
+	<field name="aceptante_AcepCod" class="java.lang.Integer"/>
+	<field name="aceptante_AcepRazSoc" class="java.lang.String"/>
+	<field name="aceptante_AceprApePat" class="java.lang.String"/>
+	<field name="aceptante_AcepApeMat" class="java.lang.String"/>
+	<field name="aceptante_AcepNom" class="java.lang.String"/>
+	<field name="aceptante_AcepDir" class="java.lang.String"/>
+	<field name="aceptante_AcepTel" class="java.lang.String"/>
+	<field name="documentoidentidad_DocIdeNom" class="java.lang.String"/>
+	<field name="aceptante_AcepNumDoc" class="java.lang.String"/>
+	<field name="estado_EstNom" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="250" y="62" width="249" height="22" uuid="61c6973a-3c9b-4779-aaf0-a7a6843097eb"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[ACEPTANTES JURIDICOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="e4c318ce-5fe6-4d28-b712-df9156dbd53d"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="6e674107-3816-413d-b248-1d4546272710"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="80" height="15" forecolor="#736343" uuid="6b9f364f-b057-4a2a-add2-eca205496e64"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="80" y="0" width="80" height="15" forecolor="#736343" uuid="1a1722b3-8ee5-40d6-9545-adcf9a213a63"/>
+				<text><![CDATA[R SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="160" y="0" width="80" height="15" forecolor="#736343" uuid="d840a43f-3457-4a46-858a-40f72576bc21"/>
+				<text><![CDATA[ApePat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="240" y="0" width="80" height="15" forecolor="#736343" uuid="346659dd-0a12-4e85-b64e-4b8a3a8c35d1"/>
+				<text><![CDATA[ApeMat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="320" y="0" width="80" height="15" forecolor="#736343" uuid="2b27212a-c079-48c3-b959-bc92392a3c5a"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="80" height="15" forecolor="#736343" uuid="f50c3fe4-3a42-408a-bf22-be897b1ba934"/>
+				<text><![CDATA[DIRRECCCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="0" width="80" height="15" forecolor="#736343" uuid="c6108934-0426-4292-92a5-665c68799577"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="560" y="0" width="80" height="15" forecolor="#736343" uuid="49b0c1f5-df44-47d7-8131-9beecab48885"/>
+				<text><![CDATA[DocIde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="640" y="0" width="80" height="15" forecolor="#736343" uuid="df09636b-e127-423c-933e-37f2de1829f6"/>
+				<text><![CDATA[NumDocIde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="720" y="0" width="80" height="15" forecolor="#736343" uuid="7e049624-4a6b-44ee-9623-139f695caa49"/>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="5ba55e66-b42e-4115-822c-408fb6c83fef"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="80" height="15" uuid="7e2df2c5-8e32-426f-8bf4-0ee572c21521"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepCod}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="80" y="0" width="80" height="15" uuid="5ea3ced6-da4a-4b19-95a4-6ff9b46f1e22"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepRazSoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="160" y="0" width="80" height="15" uuid="b5c8a8ff-70a2-49d3-be52-65f41b53a8c8"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AceprApePat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="240" y="0" width="80" height="15" uuid="eb747516-8877-4e7f-8480-5beea4b84c0f"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepApeMat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="320" y="0" width="80" height="15" uuid="f31169ef-02c9-4e86-86e1-8b582396d049"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="400" y="0" width="80" height="15" uuid="d8778de1-420b-4995-bd9f-0fd9ef73b387"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepDir}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="480" y="0" width="80" height="15" uuid="fa25ac29-91bc-4473-a92c-942274799a2c"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepTel}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="560" y="0" width="80" height="15" uuid="bf5dc2f8-c198-4194-ade8-28f4be4e9f9f"/>
+					<textFieldExpression><![CDATA[$F{documentoidentidad_DocIdeNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="640" y="0" width="80" height="15" uuid="5596ebd7-b137-4927-8de4-bfc4ed7cb536"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepNumDoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="720" y="0" width="80" height="15" uuid="2d61e69a-a8f6-41e8-a558-c617b7a31108"/>
+					<textFieldExpression><![CDATA[$F{estado_EstNom}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="1ce80171-5a81-4bd5-bd2c-627eb17b0fac"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="e304952d-1a3d-4fac-a10a-3ebba95c5f41"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="eae5b6ac-b957-46bc-90b8-2aa4b1eb63a1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="8ac01386-3c27-4e6c-bc97-81fedd576f38"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="59fd3c10-5c71-4e4b-b0c7-4f3396da4fdf"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

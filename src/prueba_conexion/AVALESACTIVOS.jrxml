@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="924107ab-1144-49a1-9650-8a0092ff5e17">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     avales.`AvalCod` AS avales_AvalCod,
+     avales.`AvalRazSoc` AS avales_AvalRazSoc,
+     avales.`AvalApePat` AS avales_AvalApePat,
+     avales.`AvalApeMat` AS avales_AvalApeMat,
+     avales.`AvalNom` AS avales_AvalNom,
+     avales.`AvalDir` AS avales_AvalDir,
+     avales.`AvalTel` AS avales_AvalTel,
+     documentoidentidad.`DocIdeNom` AS documentoidentidad_DocIdeNom,
+     avales.`AvalNumDoc` AS avales_AvalNumDoc,
+     estado.`EstNom` AS estado_EstNom
+FROM
+     `avales` avales INNER JOIN `documentoidentidad` documentoidentidad ON avales.`DOCUMENTOIDENTIDAD_DocIdeCod` = documentoidentidad.`DocIdeCod`
+     INNER JOIN `estado` estado ON avales.`ESTADO_EstCod` = estado.`EstCod`
+WHERE
+     estado.`EstCod` = 'A'
+ORDER BY
+     avales.`AvalRazSoc` ASC,
+     avales.`AvalApePat` ASC,
+     avales.`AvalApeMat` ASC,
+     avales.`AvalNom` ASC]]>
+	</queryString>
+	<field name="avales_AvalCod" class="java.lang.Integer"/>
+	<field name="avales_AvalRazSoc" class="java.lang.String"/>
+	<field name="avales_AvalApePat" class="java.lang.String"/>
+	<field name="avales_AvalApeMat" class="java.lang.String"/>
+	<field name="avales_AvalNom" class="java.lang.String"/>
+	<field name="avales_AvalDir" class="java.lang.String"/>
+	<field name="avales_AvalTel" class="java.lang.String"/>
+	<field name="documentoidentidad_DocIdeNom" class="java.lang.String"/>
+	<field name="avales_AvalNumDoc" class="java.lang.String"/>
+	<field name="estado_EstNom" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="240" y="62" width="259" height="22" uuid="6ebeadee-e034-47ff-a1e3-21793138b5d9"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[        AVALES ACTIVOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="0fd2f2d8-ed15-48dd-9c9b-04983849c345"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="8ae7a9dc-82ff-4ce5-bdcd-cfa8a43ed780"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="80" height="15" forecolor="#736343" uuid="04a7d58a-e3d5-4b82-8db6-a782d13ea2bb"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="80" y="0" width="80" height="15" forecolor="#736343" uuid="fd9adaa4-ccd6-49e3-ac94-630bf26a6c09"/>
+				<text><![CDATA[R SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="160" y="0" width="80" height="15" forecolor="#736343" uuid="7379b791-ff60-46e3-81c7-9bb26fc58f13"/>
+				<text><![CDATA[ApePat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="240" y="0" width="80" height="15" forecolor="#736343" uuid="a150e955-09f1-4500-9984-6076bfe8b1e7"/>
+				<text><![CDATA[ApeMat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="320" y="0" width="80" height="15" forecolor="#736343" uuid="d5de8c78-373b-4558-9d38-856c5b348058"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="80" height="15" forecolor="#736343" uuid="f488943d-dce7-41c5-84de-df89a8fee833"/>
+				<text><![CDATA[DIRRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="0" width="80" height="15" forecolor="#736343" uuid="b147fb6d-27a4-4975-8029-28a14fa7ef5f"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="560" y="0" width="80" height="15" forecolor="#736343" uuid="9f84546a-d83e-4135-b1e9-5b0672144f6b"/>
+				<text><![CDATA[DocIde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="640" y="0" width="80" height="15" forecolor="#736343" uuid="c7891eca-10fd-4b67-8375-3b18cae22d8a"/>
+				<text><![CDATA[NumDocIde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="720" y="0" width="80" height="15" forecolor="#736343" uuid="346b8ec2-84f9-4965-8a04-6191a9b5e71f"/>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="124ec417-baac-4a06-9ce8-8469d049fc81"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="80" height="15" uuid="64cdfce0-1e33-4481-ad6e-8edc2d5a6e97"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalCod}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="80" y="0" width="80" height="15" uuid="45913f4c-f44f-49f9-a4da-f00bfe0f5df6"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalRazSoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="160" y="0" width="80" height="15" uuid="8058d978-208a-48c6-a85b-bae6276957a4"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalApePat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="240" y="0" width="80" height="15" uuid="b6bab6cc-fe1e-47fc-879a-17c7cf5e15be"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalApeMat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="320" y="0" width="80" height="15" uuid="c827a626-4f82-4bb7-8238-0c23f1e50258"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="400" y="0" width="80" height="15" uuid="b5cc2e0e-5f95-44e8-b600-c470dc006432"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalDir}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="480" y="0" width="80" height="15" uuid="f1441a63-0dad-4ea6-8c73-96612f25f7cc"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalTel}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="560" y="0" width="80" height="15" uuid="fab39228-948d-464e-8efa-7b95c649cc8a"/>
+					<textFieldExpression><![CDATA[$F{documentoidentidad_DocIdeNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="640" y="0" width="80" height="15" uuid="3f19a3bd-1df7-4c83-b549-5c06c8fd549c"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalNumDoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="720" y="0" width="80" height="15" uuid="014d90be-2bd3-439f-9038-43060fb492e7"/>
+					<textFieldExpression><![CDATA[$F{estado_EstNom}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="e7a72431-db5c-467c-831b-706647e04963"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="6cf4d908-6f5b-4b10-849a-72eecdc4df20"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="252802ab-f0fa-4577-b4da-f00036f87a71"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="c136e85d-e0bb-4c4a-9c2f-b0e6d5913caa"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="a252f218-821d-4771-a9cd-4f3b77199fc8"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

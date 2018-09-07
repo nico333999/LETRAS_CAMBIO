@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d204fe18-a5bc-4a86-ab51-ff890edd9079">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     registroletrascambio.`RegLetCamCod` AS registroletrascambio_RegLetCamCod,
+     aceptante.`AcepRazSoc` AS aceptante_AcepRazSoc,
+     aceptante.`AceprApePat` AS aceptante_AceprApePat,
+     aceptante.`AcepApeMat` AS aceptante_AcepApeMat,
+     aceptante.`AcepNom` AS aceptante_AcepNom,
+     avales.`AvalRazSoc` AS avales_AvalRazSoc,
+     avales.`AvalApePat` AS avales_AvalApePat,
+     avales.`AvalApeMat` AS avales_AvalApeMat,
+     avales.`AvalNom` AS avales_AvalNom,
+     representantegirador.`RepGirApePat` AS representantegirador_RepGirApePat,
+     representantegirador.`RepGirApeMat` AS representantegirador_RepGirApeMat,
+     representantegirador.`RepGirNom` AS representantegirador_RepGirNom,
+     bancos.`BanNom` AS bancos_BanNom,
+     lugargiro.`LugGirNom` AS lugargiro_LugGirNom,
+     registroletrascambio.`RegLetCamMont` AS registroletrascambio_RegLetCamMont,
+     tipomoneda.`TipMonNom` AS tipomoneda_TipMonNom,
+     registroletrascambio.`RegLetCamFecGirAño` AS registroletrascambio_RegLetCamFecGirAño,
+     registroletrascambio.`RegLetCamFecGirMes` AS registroletrascambio_RegLetCamFecGirMes,
+     registroletrascambio.`RegLetCamFecGirDia` AS registroletrascambio_RegLetCamFecGirDia,
+     registroletrascambio.`RegLetCamFecVenAño` AS registroletrascambio_RegLetCamFecVenAño,
+     registroletrascambio.`RegLetCamFecVenMes` AS registroletrascambio_RegLetCamFecVenMes,
+     registroletrascambio.`RegLetCamFecVenDia` AS registroletrascambio_RegLetCamFecVenDia,
+     estado.`EstNom` AS estado_EstNom
+FROM
+     `registroletrascambio` registroletrascambio INNER JOIN `aceptante` aceptante ON registroletrascambio.`ACEPTANTE_AcepCod` = aceptante.`AcepCod`
+     INNER JOIN `avales` avales ON registroletrascambio.`AVALES_AvalCod` = avales.`AvalCod`
+     INNER JOIN `representantegirador` representantegirador ON registroletrascambio.`REPRESENTANTEGIRADOR_RepGir1` = representantegirador.`RepGir`
+     INNER JOIN `tipomoneda` tipomoneda ON registroletrascambio.`TIPOMONEDA_TipMonCod` = tipomoneda.`TipMonCod`
+     INNER JOIN `lugargiro` lugargiro ON registroletrascambio.`LUGARGIRO_LugGirCod` = lugargiro.`LugGirCod`
+     INNER JOIN `bancos` bancos ON registroletrascambio.`BANCOS_BanCod` = bancos.`BanCod`
+     INNER JOIN `estado` estado ON registroletrascambio.`ESTADO_EstCod` = estado.`EstCod`
+WHERE
+     estado.`EstCod` = 'A'
+ORDER BY
+     aceptante.`AcepRazSoc` ASC,
+     aceptante.`AceprApePat` ASC,
+     aceptante.`AcepApeMat` ASC,
+     aceptante.`AcepNom` ASC,
+     avales.`AvalRazSoc` ASC,
+     avales.`AvalApePat` ASC,
+     avales.`AvalApeMat` ASC,
+     avales.`AvalNom` ASC]]>
+	</queryString>
+	<field name="registroletrascambio_RegLetCamCod" class="java.lang.Integer"/>
+	<field name="aceptante_AcepRazSoc" class="java.lang.String"/>
+	<field name="aceptante_AceprApePat" class="java.lang.String"/>
+	<field name="aceptante_AcepApeMat" class="java.lang.String"/>
+	<field name="aceptante_AcepNom" class="java.lang.String"/>
+	<field name="avales_AvalRazSoc" class="java.lang.String"/>
+	<field name="avales_AvalApePat" class="java.lang.String"/>
+	<field name="avales_AvalApeMat" class="java.lang.String"/>
+	<field name="avales_AvalNom" class="java.lang.String"/>
+	<field name="representantegirador_RepGirApePat" class="java.lang.String"/>
+	<field name="representantegirador_RepGirApeMat" class="java.lang.String"/>
+	<field name="representantegirador_RepGirNom" class="java.lang.String"/>
+	<field name="bancos_BanNom" class="java.lang.String"/>
+	<field name="lugargiro_LugGirNom" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamMont" class="java.math.BigDecimal"/>
+	<field name="tipomoneda_TipMonNom" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecGirAño" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecGirMes" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecGirDia" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecVenAño" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecVenMes" class="java.lang.String"/>
+	<field name="registroletrascambio_RegLetCamFecVenDia" class="java.lang.String"/>
+	<field name="estado_EstNom" class="java.lang.String"/>
+	<group name="aceptante_AcepRazSoc">
+		<groupExpression><![CDATA[$F{aceptante_AcepRazSoc}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="f11c660f-de18-48d5-9a81-bcca255b6686"/>
+					<rectangle>
+						<reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343" uuid="cee4f9ec-3773-460c-ac4b-09b2fabd5000"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343" uuid="42d10954-595a-4b35-aff5-7136269e61fc"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{aceptante_AcepRazSoc}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="180" y="62" width="360" height="22" uuid="86edbd4c-450b-446a-8bdf-7677491f5fd0"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[LETRAS DE CAMBIO NO CANCELADAS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="94454a9b-7d0d-4b6d-a806-7e14919cdd2f"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="196b94af-a9a5-4faa-ae62-6138d03f8c26"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="36" height="15" forecolor="#736343" uuid="d4fac01d-0257-4e6a-a8b9-78693862fcdb"/>
+				<text><![CDATA[Cod]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="36" y="0" width="36" height="15" forecolor="#736343" uuid="60f4b609-51bb-4f8c-911d-7f783f12d9bd"/>
+				<text><![CDATA[ACAP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="72" y="0" width="36" height="15" forecolor="#736343" uuid="79634797-2141-495c-a634-2abfd4f891cf"/>
+				<text><![CDATA[ACAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="108" y="0" width="36" height="15" forecolor="#736343" uuid="6d43fcad-6885-4908-839e-928aa0b09a0a"/>
+				<text><![CDATA[ACN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="144" y="0" width="36" height="15" forecolor="#736343" uuid="14030bd6-5cfd-440d-82e8-ac1aec088251"/>
+				<text><![CDATA[AVRZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="180" y="0" width="36" height="15" forecolor="#736343" uuid="a47d1817-175b-482f-bbb0-adf22ffaf82e"/>
+				<text><![CDATA[AVAP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="216" y="0" width="36" height="15" forecolor="#736343" uuid="d49be51f-23b3-4921-a7eb-5f385ff57d00"/>
+				<text><![CDATA[AVAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="252" y="0" width="36" height="15" forecolor="#736343" uuid="28cf51d0-e9b5-4cb6-93f5-67821d863740"/>
+				<text><![CDATA[AVN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="288" y="0" width="36" height="15" forecolor="#736343" uuid="311dd9b6-59bf-4d11-a10b-2808df7f9b32"/>
+				<text><![CDATA[RAP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="324" y="0" width="36" height="15" forecolor="#736343" uuid="874e569e-bc57-47a7-93ee-fc5b03d02a35"/>
+				<text><![CDATA[RAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="360" y="0" width="36" height="15" forecolor="#736343" uuid="adbf37c2-9844-4f8c-a348-26ce0c738437"/>
+				<text><![CDATA[RN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="396" y="0" width="36" height="15" forecolor="#736343" uuid="7c39dd8b-3225-4305-8eae-e1ab5fea3e0f"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="432" y="0" width="36" height="15" forecolor="#736343" uuid="2bf67b88-9c79-421c-b20b-78e6955595b0"/>
+				<text><![CDATA[Lgiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="468" y="0" width="36" height="15" forecolor="#736343" uuid="a32d8211-3ec3-4884-b1fd-56804d7e1994"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="504" y="0" width="36" height="15" forecolor="#736343" uuid="4145d0e8-5d80-42fc-91f8-f8bd08bcf2df"/>
+				<text><![CDATA[Tmon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="540" y="0" width="36" height="15" forecolor="#736343" uuid="714fcdd7-cb0c-407b-a3d6-296749b173aa"/>
+				<text><![CDATA[FGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="576" y="0" width="36" height="15" forecolor="#736343" uuid="ea9e719b-348a-43ae-bed4-d9291a8c8076"/>
+				<text><![CDATA[FGM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="612" y="0" width="36" height="15" forecolor="#736343" uuid="449f38b1-5236-4640-8000-36db4eb51b93"/>
+				<text><![CDATA[FGD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="648" y="0" width="36" height="15" forecolor="#736343" uuid="58c2a0ad-aaf3-4238-9953-696af7271d3a"/>
+				<text><![CDATA[FVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="684" y="0" width="36" height="15" forecolor="#736343" uuid="bc6df03e-26fc-4350-96c3-c0e4ec93e60c"/>
+				<text><![CDATA[FVM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="720" y="0" width="36" height="15" forecolor="#736343" uuid="9df833c2-4345-49d2-87a7-c9a6d0d10433"/>
+				<text><![CDATA[FVD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="756" y="0" width="36" height="15" forecolor="#736343" uuid="85f4d246-89f0-4fbb-9a2f-44142d70d8c2"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="3128950e-9f00-4b06-be4b-7b6fc8e66fe4"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="36" height="15" uuid="acc163a5-b3f2-4eaa-9df8-acc9534fb38b"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamCod}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="36" y="0" width="36" height="15" uuid="97f18946-3c13-4e72-9303-4033f65cb4a7"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AceprApePat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="72" y="0" width="36" height="15" uuid="b9e2d4d4-f370-46e2-b81e-e162fdfbb698"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepApeMat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="108" y="0" width="36" height="15" uuid="7a9d7ed4-26c8-489e-a0c2-399f34a8ca36"/>
+					<textFieldExpression><![CDATA[$F{aceptante_AcepNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="144" y="0" width="36" height="15" uuid="445ed025-0b6f-4ffb-93a4-461703527bdf"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalRazSoc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="180" y="0" width="36" height="15" uuid="5b7fffe8-bc64-41d5-bdc5-78ade03a0b97"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalApePat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="216" y="0" width="36" height="15" uuid="2e33c03f-7771-457a-a6fe-fe31b6ea822a"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalApeMat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="252" y="0" width="36" height="15" uuid="092ca379-952e-489c-b2b5-37a70db29e7f"/>
+					<textFieldExpression><![CDATA[$F{avales_AvalNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="288" y="0" width="36" height="15" uuid="9c60f90c-022c-485e-89da-065fcd410271"/>
+					<textFieldExpression><![CDATA[$F{representantegirador_RepGirApePat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="324" y="0" width="36" height="15" uuid="e172b815-1cf4-4fca-92c4-af625565af0e"/>
+					<textFieldExpression><![CDATA[$F{representantegirador_RepGirApeMat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="360" y="0" width="36" height="15" uuid="16175bf6-6818-4cb2-b466-c1ff3929353b"/>
+					<textFieldExpression><![CDATA[$F{representantegirador_RepGirNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="396" y="0" width="36" height="15" uuid="8d45599e-d2c7-484f-ae43-76deb0e4ef58"/>
+					<textFieldExpression><![CDATA[$F{bancos_BanNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="432" y="0" width="36" height="15" uuid="9a9f4c92-de31-402b-9a7c-dd7f76e6a986"/>
+					<textFieldExpression><![CDATA[$F{lugargiro_LugGirNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="468" y="0" width="36" height="15" uuid="5e2869b1-fc0c-4689-9d2f-8b2b42291449"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamMont}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="504" y="0" width="36" height="15" uuid="868254de-ab0e-46c4-81f6-fbc27db362cf"/>
+					<textFieldExpression><![CDATA[$F{tipomoneda_TipMonNom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="540" y="0" width="36" height="15" uuid="c921736c-b9e9-4cc4-9457-bb3e9a3ee020"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecGirAño}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="576" y="0" width="36" height="15" uuid="52bf6ee9-2047-47a0-b64d-e652a373ec93"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecGirMes}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="612" y="0" width="36" height="15" uuid="95db8037-0ea2-458e-a007-3a12ca82af81"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecGirDia}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="648" y="0" width="36" height="15" uuid="c826a02f-11df-4ac4-92e7-be35f9bfd2d1"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecVenAño}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="684" y="0" width="36" height="15" uuid="1b4f36a9-5e18-44c7-944b-302e89adef9b"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecVenMes}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="720" y="0" width="36" height="15" uuid="3da52422-cc60-4082-8e17-4a7cf76ada2d"/>
+					<textFieldExpression><![CDATA[$F{registroletrascambio_RegLetCamFecVenDia}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="756" y="0" width="36" height="15" uuid="3234093e-0ba6-4854-9fe8-0b3e66623f3a"/>
+					<textFieldExpression><![CDATA[$F{estado_EstNom}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="de6d3d0f-3300-4348-a4d4-d3fe3aef1296"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="5c5be079-02d5-49fa-8bb2-c5ed699d8f7f"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="bd3f0b1e-211c-4191-b529-dc0366dffa87"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="c1100f83-57ef-4baf-8364-0190ceac5c51"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="d249e2ab-4481-4c33-b4b4-126d2ffb1f64"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
